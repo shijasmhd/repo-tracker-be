@@ -1,0 +1,23 @@
+{
+  "name": "repo-tracker-be",
+  "version": "1.0.0",
+  "description": "Backend express app for repo tracker",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "author": "Shijas",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.19.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.11.0",
+    "nodemon": "^3.1.7"
+  }
+}
