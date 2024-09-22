@@ -37,9 +37,13 @@ process.on('SIGTERM', () => {
 
 /**
  * POST - /api/v1/auth/register
+ * // required body: userName, password
+ * 
  * POST - /api/v1/auth/login
- *** POST - /api/v1/auth/logout
+ * // required body: userName, password
+ * 
  * POST - /api/v1/auth/refresh-tokens
+ *** POST - /api/v1/auth/logout
  *** POST - /api/v1/auth/forgot-password
  * 
  * From frontend(GET - /api/v1/github/search?repo={}&user={})
@@ -59,5 +63,5 @@ process.on('SIGTERM', () => {
   * id, user-name, password, created-at, update-at
   * 
   * BOOKMARKS Table
-  * uid(belongs to users.id), id, url, name, owner, created-at, update-at
+  * uid(belongs to users.id), id, url, repo-name, repo-owner, created-at, update-at
   */

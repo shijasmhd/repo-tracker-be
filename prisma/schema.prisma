@@ -7,10 +7,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  id        Int      @id @default(autoincrement())
-  name     String   @db.VarChar(255)
-  password   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model User {
+  id        String    @id @unique
+  userName  String    @unique
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  bookmarks Bookmark[]
+}
+
+model Bookmark {
+  id        String    @id @unique
+  url       String
+  repoName  String
+  repoOwner String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@unique([url, userId])
 }
