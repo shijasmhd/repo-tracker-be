@@ -4,11 +4,11 @@ const userService = require('../services/user-service');
 const httpStatus = require('http-status');
 
 const addBookMark = tryCatchUtil(async (req, res) => {
-  const { params: { userId }, body: { url } } = req;
+  const { params: { userId }, body} = req;
 
   await userService.isUserValid(userId);
 
-  const bookMark = await bookMarkService.createBookMark(userId, url);
+  const bookMark = await bookMarkService.createBookMark(userId, body);
   res.status(httpStatus.OK).json(bookMark);
 });
 

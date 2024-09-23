@@ -77,6 +77,12 @@ const getBookMarkById = (userId, id) => {
   });
 };
 
+const getBookMarkByUrl = (userId, url) => {
+  return Bookmark.findUnique({
+    where: { userId, url }
+  });
+};
+
 const deleteBookMark = (userId, id) => {
   return Bookmark.delete({
     where: { userId, id }
@@ -88,5 +94,6 @@ module.exports = {
   getBookMarks,
   getBookMarksCountByDate,
   getBookMarkById,
+  getBookMarkByUrl,
   deleteBookMark,
 }

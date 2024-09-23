@@ -3,8 +3,13 @@ const bookMark = require('../models/bookmark');
 const ApiError = require('../utils/ApiError');
 const httpStatus = require('http-status');
 
-const createBookMark = async (userId, url) => {
-  const repoData = await githubService.getRepoData(url)
+const createBookMark = async (userId, body) => {
+  const row = await bookMark.getBookMarkById(userId, body.bookMarkId);
+  if (row) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Bookmark already exists');
+  }
+
+  const repoData = await githubService.getRepoData(body.url)
   return bookMark.createBookMark(userId, repoData);
 };
 

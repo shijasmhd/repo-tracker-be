@@ -1,6 +1,7 @@
 const app = require('./app');
 const dotenv = require('dotenv');
 const path = require('path');
+const db = require('./utils/db');
 
 dotenv.config({ path: path.join(__dirname, '../.env') })
 
@@ -9,7 +10,8 @@ const server = app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-const exitHandler = () => {
+const exitHandler = async () => {
+  await db.$disconnect();
   if (server) {
     server.close(() => {
       console.log('Server closed');
