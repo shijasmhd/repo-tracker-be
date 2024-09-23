@@ -52,6 +52,7 @@ process.on('SIGTERM', () => {
  * POST - /api/v1/users/:userId/bookmarks - {url}
  * POST - /api/v1/users/:userId/bookmarks/upload - {csv}
  * GET - /api/v1/users/:userId/bookmarks?date-start&date-end
+ * GET - /api/v1/users/:userId/bookmarks/stats?date-start&date-end
  * 
  * DELETE - /api/v1/users/:userId/bookmarks/:bookmarkId
  */

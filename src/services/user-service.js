@@ -22,7 +22,18 @@ const loginUser = async (userBody) => {
   return userData;
 };
 
+const isUserValid = async (userId) => {
+  const userData = await user.getUserDetailsById(userId);
+
+  if (!userData) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'user does not exist');
+  }
+
+  return true;
+};
+
 module.exports = {
   createUser,
   loginUser,
+  isUserValid,
 }

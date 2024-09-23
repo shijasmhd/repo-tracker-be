@@ -9,6 +9,12 @@ const getUserDetailsByName = (userName) => {
   });
 };
 
+const getUserDetailsById = (id) => {
+  return User.findUnique({
+    where: { id }
+  });
+};
+
 const createUser = async (userBody) => {
   const password =
     await bcrypt.hash(userBody.password, saltRounds);
@@ -24,5 +30,6 @@ const createUser = async (userBody) => {
 
 module.exports = {
   getUserDetailsByName,
+  getUserDetailsById,
   createUser,
 }
