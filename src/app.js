@@ -4,6 +4,8 @@ const helmet = require("helmet");
 const compression = require("compression");
 const routes = require("./routes/v1");
 const cors = require("cors");
+const passport = require("passport");
+const { jwtStrategy } = require("./services/auth-service");
 const {
   errorFormatter,
   errorHandler,
@@ -23,6 +25,10 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options("*", cors());
+
+// jwt authentication using passport
+app.use(passport.initialize());
+passport.use("jwt", jwtStrategy);
 
 // api v1 routes
 app.use("/api/v1", routes);
