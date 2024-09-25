@@ -14,6 +14,12 @@ const createBookMark = (userId, repoData) => {
   });
 };
 
+const insertMultipleBookMarks = (insertArr) => {
+  return Bookmark.createMany({
+    data: insertArr,
+  });
+};
+
 const getBookMarks = (userId, { startDate, endDate, page }) => {
   const whereClause = {
     userId,
@@ -99,4 +105,5 @@ module.exports = {
   getBookMarksCountByDate,
   getBookMarkById,
   deleteBookMark,
+  insertMultipleBookMarks,
 };

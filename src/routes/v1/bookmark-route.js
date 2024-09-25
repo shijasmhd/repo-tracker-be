@@ -4,6 +4,8 @@ const bookMarkController = require("../../controllers/bookmark-controller");
 const validate = require("../../middlewares/validate");
 const bookmarkValidations = require("../../validations/bookmark-validation");
 const authMiddleWare = require("../../middlewares/auth-middleware");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 
 router.post(
   "/:userId/bookmarks",
@@ -15,6 +17,8 @@ router.post(
 router.post(
   "/:userId/bookmarks/upload",
   authMiddleWare(),
+  validate(bookmarkValidations.uploadCsvBookmarks),
+  upload.single("csvFile"),
   bookMarkController.uploadCsvBookmarks
 );
 

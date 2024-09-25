@@ -22,6 +22,12 @@ const addBookMark = {
   }),
 };
 
+const uploadCsvBookmarks = {
+  params: joi.object().keys({
+    userId: joi.string().required(),
+  }),
+};
+
 const getBookMarks = {
   params: joi.object().keys({
     userId: joi.string().required(),
@@ -55,4 +61,5 @@ module.exports = {
   getBookMarks,
   getBookMarksStats,
   deleteBookMark,
+  uploadCsvBookmarks,
 };
