@@ -1,23 +1,28 @@
-const axios = require('axios');
-const ApiError = require('../utils/ApiError');
-const httpStatus = require('http-status');
+const axios = require("axios");
+const ApiError = require("../utils/ApiError");
+const httpStatus = require("http-status");
 
 const getRepoData = async (url) => {
   try {
     const repo = await axios.get(url);
 
-    const { id, name, owner: { login: ownerName } } = repo.data;
+    const {
+      id,
+      name,
+      html_url: htmlUrl,
+      owner: { login: ownerName },
+    } = repo.data;
 
-    return { id, name, ownerName, url };
+    return { id, name, ownerName, htmlUrl, url };
   } catch (error) {
     if (error.status === httpStatus.NOT_FOUND) {
-      throw new ApiError(httpStatus.NOT_FOUND, 'invalid repo url');
+      throw new ApiError(httpStatus.NOT_FOUND, "invalid repo url");
     }
 
-    throw (error);
+    throw error;
   }
 };
 
 module.exports = {
   getRepoData,
-}
+};

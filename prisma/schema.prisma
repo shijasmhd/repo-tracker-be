@@ -18,8 +18,9 @@ model User {
 }
 
 model Bookmark {
-  id        Int    @id @unique
+  id        Int
   url       String
+  htmlUrl   String @default("")
   repoName  String
   repoOwner String
   createdAt DateTime  @default(now())
@@ -29,5 +30,5 @@ model Bookmark {
   user      User      @relation(fields: [userId], references: [id])
 
   @@index([userId])
-  @@unique([url, userId])
+  @@unique([id, userId])
 }
